@@ -1,0 +1,17 @@
+ 
+CREATE TABLE Productos (
+    id int,
+    name varchar(255),
+    imagen varchar(255),
+    precio varchar(255),
+    disponibles int,
+    descripcion varchar(255)
+);
+
+CREATE TABLE Usuarios (
+    id int,
+    email varchar(255),
+    nombre varchar(255),
+    direccion varchar(255),
+    password varchar(255)
+);
