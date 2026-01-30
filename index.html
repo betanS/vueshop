@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="content"><div id="app">
+    
     <div class="navBar"><img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg" alt="logo" style="size: 10px;"> 
         <a href="index.html#productos" id="navProductos">Productos</a>
         <a href="index.html#info" id="navAcerca">Acerca</a>
         <a id="navCarrito">Carrito</a>
         <a id="navIdioma">Idioma</a>
     </div>
-    <div id="Productos">
-            <div class="carousel">
+    <div id="productosCarrusel">
+    <div class="carousel" >
     <div class="carousel-track">
     <!-- Clon de la última -->
         <div class="slide"><img src="https://www.cifpzonzamas.es/img/noticias/01KES0E8GW2BXSPXYNCJTA683A.png" alt=""></div>
@@ -32,11 +32,13 @@
         </div>
         </div>
     </div>
+    <main class="content"><div id="app">
+    
     <div>
       <ul>
-           <li v-for="producto in productos">
+           <li v-for="producto in productosFromResponse">
             <div class="card">
-                <img :src="producto.imagen" :alt="title">
+                <img :src="producto.imagen" :alt="producto.name">
                 <div class = "container">
                     <h3>{{ producto.name }}</h3>
                     <p>{{ producto.precio }}</p>

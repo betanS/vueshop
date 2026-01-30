@@ -34,8 +34,8 @@ body {
   cursor: pointer;
 }
 #logo {
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
 }
 .carousel {
   width: 100%;
@@ -63,10 +63,19 @@ footer {
   text-align: center;
   margin-top: 20px;
 }
+ul {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* para que bajen si no caben */
+    list-style: none;
+    padding: 0;
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  width: 250px;
 }
 
 /* On mouse-over, add a deeper shadow */

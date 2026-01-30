@@ -1,4 +1,7 @@
- 
+ docker compose exec mysql mysql -u root -p
+
+
+
 CREATE TABLE Productos (
     id int,
     name varchar(255),
@@ -15,3 +18,12 @@ CREATE TABLE Usuarios (
     direccion varchar(255),
     password varchar(255)
 );
+
+
+-- Inserts para la tabla Productos (Aspiradoras)
+INSERT INTO Productos (id, name, imagen, precio, disponibles, descripcion) VALUES
+(1, 'Aspiradora Samsung VC20', 'https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg', '150.00', 12, 'Aspiradora Samsung de 2000W con bolsa'),
+(2, 'Aspiradora LG Turbo', 'https://thumb.pccomponentes.com/w-150-150/articles/1095/10955339/1505-aspiradora-sin-cable-dyson-v16-piston-animal-900-w-filtro-hepa-autonomia-70-min-foto.jpg', '180.50', 8, 'Aspiradora LG turbo ciclónica sin bolsa'),
+(3, 'Aspiradora Philips PowerGo', 'https://thumb.pccomponentes.com/w-150-150/articles/1067/10676978/131-karcher-wd-3-v-15-4-20-aspirador-sin-bolsa-seco-humedo-1000w-caracteristicas.jpg', '135.99', 15, 'Aspiradora Philips compacta para el hogar'),
+(4, 'Aspiradora Bosch ProPower', 'https://thumb.pccomponentes.com/w-150-150/articles/23/233461/1460-cecotec-conga-immortal-extremesuction-222v-animal-hand-aspirador-de-mano.jpg', '220.00', 6, 'Aspiradora Bosch alta potencia y bajo ruido'),
+(5, 'Aspiradora Xiaomi Mi Vacuum', 'https://thumb.pccomponentes.com/w-150-150/articles/1067/10676978/131-karcher-wd-3-v-15-4-20-aspirador-sin-bolsa-seco-humedo-1000w-caracteristicas.jpg', '299.99', 10, 'Aspiradora inteligente con navegación láser');
