@@ -21,36 +21,37 @@
     <div class="carousel" >
     <div class="carousel-track">
     <!-- Clon de la última -->
-        <div class="slide"><img src="https://www.cifpzonzamas.es/img/noticias/01KES0E8GW2BXSPXYNCJTA683A.png" alt=""></div>
+        <div class="slide"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg" alt=""></div>
 
     <!-- Slides reales -->
         <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-530-530/articles/33/331508/1802-cecotec-conga-thunderbrush-560-aspirador-escoba-y-de-mano-con-cable-600w.jpg" alt=""></a></div>
-        <div class="slide"><img src="https://www.cifpzonzamas.es/img/noticias/01KBJ3KFDMD1H2W51W4BBW738M.jpg" alt=""></div>
-        <div class="slide"><img src="https://www.cifpzonzamas.es/img/nuestro-centro/ateca.jpg" alt=""></div>
-        <div class="slide"><img src="https://www.cifpzonzamas.es/img/nuestro-centro/energia.jpg" alt=""></div>
-        <div class="slide"><img src="https://www.cifpzonzamas.es/img/noticias/01KES0E8GW2BXSPXYNCJTA683A.png" alt=""></div>
+        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1095/10955339/1505-aspiradora-sin-cable-dyson-v16-piston-animal-900-w-filtro-hepa-autonomia-70-min-foto.jpg" alt=""></a></div>
+        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1067/10676978/131-karcher-wd-3-v-15-4-20-aspirador-sin-bolsa-seco-humedo-1000w-caracteristicas.jpg" alt=""></a></div>
+        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/23/233461/1460-cecotec-conga-immortal-extremesuction-222v-animal-hand-aspirador-de-mano.jpg" alt=""></a></div>
+        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg" alt=""></a></div>
 
     <!-- Clon de la primera -->
-        <div class="slide"><img src="https://www.cifpzonzamas.es/img/noticias/01KC8ZJRF3Q9B790FD0JAN7CTV.png" alt=""></div>
+        <div class="slide"><img src="https://thumb.pccomponentes.com/w-530-530/articles/33/331508/1802-cecotec-conga-thunderbrush-560-aspirador-escoba-y-de-mano-con-cable-600w.jpg" alt=""></div>
         </div>
         </div>
     </div>
     <main class="content"><div id="app">
     
-    <div>
+    <div id = "productos">
       <ul>
            <li v-for="producto in productos" :key="producto.id">
             <div class="card">
                 <img :src="producto.imagen" :alt="producto.name">
                 <div class = "container">
                     <h3>{{ producto.name }}</h3>
-                    <p>{{ producto.precio }}</p>
+                    <p>{{ producto.precio }} €</p>
                     <p>{{ producto.disponibles }}</p>
                     <button @click="carrito.push(producto)">Comprar</button>
                 </div>
             </div>
         </li>
       </ul>
+      </div>
     <div id="principal">
         <div id= "carrito">
             <h2 style="text-align: left; color: gray;">Carrito de compras:</h2>
@@ -59,7 +60,7 @@
                 <p>{{ item.name }} - {{ item.precio }}</p>  
             </div>
             <div v-if="carrito.length === 0" style="text-align: center; color: gray;">Tu carrito está vacío.</div>
-            <div v-if="carrito.length > 0" style="text-align: center; color: gray;">Total: {{ carrito.reduce((total, item) => total + item.precio, 0) }} €</div>
+            <div v-if="carrito.length > 0" style="text-align: center; color: gray;">Total: {{ carrito.reduce((total, item) => total + item.precio, 0) }} € <button @click="carrito = []">Vaciar carrito</button></div>
 
         </div>
         <div id = "info">
