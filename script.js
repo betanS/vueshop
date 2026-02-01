@@ -38,9 +38,7 @@ setInterval(() => {
 const app = Vue.createApp({
   data() {
     return {
-      
-      mostrarProducto: 0,
-      productos: [],
+      productos: [] 
     }
   },
   methods: {
@@ -50,6 +48,7 @@ const app = Vue.createApp({
   }
 })
 
+const appInstance = app.mount('#app');
 document.addEventListener("DOMContentLoaded", function() {
     var ourRequest = new XMLHttpRequest();
     ourRequest.open("GET", "http://localhost:8084/data_sql.php", true);
@@ -67,9 +66,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 descripcion: item.descripcion
             }));
 
-            app.productos = productosFromResponse;
+            appInstance.productos = productosFromResponse;
 
-            console.log("Productos cargados desde SQL:", app.productos);
+            console.log("Productos cargados desde SQL:", productosFromResponse);
         }
     };
 
@@ -77,6 +76,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-app.mount('#app')
 
 

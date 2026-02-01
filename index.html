@@ -12,6 +12,7 @@
         <a href="index.html#productos" id="navProductos">Productos</a>
         <a href="index.html#info" id="navAcerca">Acerca</a>
         <a id="navCarrito">Carrito</a>
+        
         <a id="navIdioma">Idioma</a>
     </div>
     <div id="productosCarrusel">
@@ -36,7 +37,7 @@
     
     <div>
       <ul>
-           <li v-for="producto in productosFromResponse">
+           <li v-for="producto in productos" :key="producto.id">
             <div class="card">
                 <img :src="producto.imagen" :alt="producto.name">
                 <div class = "container">
@@ -49,14 +50,7 @@
         </li>
       </ul>
     <div id="principal">
-        <div v-if="mostrarProducto != 0" id="productos">
-        <h3>{{ producto.name }}</h3>
-          <p>{{ producto.imagen }}</p>
-          <p style="color: red;">{{ producto.precio }}</p>
-          <p>{{ producto.disponibles }}</p>
-          <p>{{ producto.descripcion }}</p>
-          <button style="background-color: orange;">Añadir al carrito</button>
-        </div>
+        
         <div id = "info">
             <h2 style="text-align: center;">Sobre nosotros:</h2>
             <p style="text-align: center; width: 60%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec varius dolor, in tincidunt risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur scelerisque ipsum nulla, ut sodales nibh pharetra sed. Nullam bibendum at quam in venenatis. Suspendisse ut elementum augue, et vestibulum neque. Suspendisse fringilla euismod enim, sit amet tempus risus fermentum vitae. Morbi tempus pulvinar imperdiet. Proin justo ex, ornare a est convallis, semper fringilla nibh. Praesent tristique tellus sit amet sapien mollis tristique. Nunc vitae magna quis tellus gravida auctor ut ut est. In ipsum neque, laoreet a ipsum a, congue lacinia justo. In nec fringilla nibh. Suspendisse potenti. Vivamus sit amet mi pulvinar, condimentum ligula eget, tempus lectus. Aenean feugiat, elit non pulvinar tempor, erat metus bibendum sapien, nec rutrum lacus mi non eros.
