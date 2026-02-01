@@ -19,9 +19,23 @@ body {
   padding: 30px;
   text-align: left;
   font-size: 35px;
+  display: flex;
 }
 
 .navBar a {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.navBar button {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   padding: 10px 20px;
@@ -99,4 +113,10 @@ ul {
   border-radius: 5px 5px 0 0;
   height: 168px;
   width: 168px;
+}
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }

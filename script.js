@@ -33,12 +33,14 @@ setInterval(() => {
     }, 500);
   }
 }, DELAY);
-
+//###############################################################################
 
 const app = Vue.createApp({
   data() {
     return {
-      productos: [] 
+      productos: [] ,
+      carrito: [],
+      mostrarProducto: null,
     }
   },
   methods: {
@@ -74,7 +76,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     ourRequest.send();
 });
-
-
+const loginButton = document.getElementById("login");
+if (sessionStorage.getItem('loggedUser')) {
+   loginButton.textContent = "👤";
+} else {
+   loginButton.textContent = "Iniciar Sesión";
+}
+loginButton.addEventListener("click", function() {
+   if (sessionStorage.getItem('loggedUser')) {
+      if (confirm("¿Deseas cerrar sesión?")) {
+         sessionStorage.removeItem('loggedUser');
+         window.location.href = "index.html";
+      }
+   } else {
+      window.location.href = "login.html";
+   }
+});
 
 

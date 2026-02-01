@@ -40,7 +40,7 @@
       alert("Login successful!");
       // Guardamos username en sessionStorage para sesión temporal
       sessionStorage.setItem('currentUser', username);
-
+      sessionStorage.setItem('loggedUser', username);
       window.location.href = "index.html";
     });
 
