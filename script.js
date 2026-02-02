@@ -46,9 +46,6 @@ const app = Vue.createApp({
     }
   },
   methods: {
-    toggleShowProducto(id) {
-      mostrarProducto = id;
-    },
     cambiarVista(nuevaVista) {
       this.vista = nuevaVista;
     }
@@ -59,25 +56,22 @@ const app = Vue.createApp({
 })
 
 /* Componente de la barra de navegación */
-app.component('top-nav-bar', {
-  data() {
-    return {
-      title: 'Tienda de Aspiradoras',
-         }
-  },
+app.component('top-nav-bar', {  
   template: `
     <div class="navBar">
-      <a @click="$emit('cambiar', 'home')"><img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg"></a>
+    <a v-on:click="$emit('cambiar', 'home')">
+      <img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg">
+    </a>
 
-      <a @click="$emit('cambiar', 'home')">Inicio</a>
-      <a @click="$emit('cambiar', 'productos')">Productos</a>
-      <a @click="$emit('cambiar', 'info')">Acerca</a>
+    <a v-on:click="$emit('cambiar', 'home')">Inicio</a>
+    <a v-on:click="$emit('cambiar', 'productos')">Productos</a>
+    <a v-on:click="$emit('cambiar', 'info')">Acerca</a>
 
-      <div class="nav-right">
-        <a @click="$emit('cambiar', 'carrito')">Carrito</a>
-        <button id="login"></button>
-      </div>
-    </div>`
+    <div class="nav-right">
+      <a v-on:click="$emit('cambiar', 'carrito')">Carrito</a>
+      <button id="login"></button>
+    </div>
+  </div>`
 })
 
 /* Montar la aplicación // Cargar Productos */
