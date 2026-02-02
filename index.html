@@ -11,9 +11,6 @@
 <!--NavBar-->
    <top-nav-bar @cambiar="cambiarVista"></top-nav-bar>
 
-
-
-
 <!--Carrusel-->
 <div v-if="vista === 'home'">
     <div id="productosCarrusel">
@@ -34,8 +31,6 @@
         </div>
     </div>
 </div>
-    
-
 
 <!--DIVISIÓN DE PRODUCTOS-->
 <div v-if="vista === 'productos'" id="productos">
@@ -66,6 +61,7 @@
             <div v-if="carrito.length > 0" style="text-align: center; color: gray;">
                 Total: {{ carrito.reduce((total, item) => total + item.precio * item.cantidad, 0).toFixed(2) }} € 
                 <button @click="carrito = []">Vaciar carrito</button>
+                <button @click="alert('Compra confirmada!'); carrito = [];">Confirmar compra</button>
             </div>
             <div v-if="carrito.length === 0" style="text-align: center; color: gray; border: 1px solid gray; padding: 20px; margin-top: 20px;">
                 <p>El carrito está vacío.</p>
