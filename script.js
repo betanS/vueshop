@@ -44,7 +44,7 @@ const app = Vue.createApp({
     return {
       vista: 'home',
       productos: [] ,
-      carrito: [],
+      carrito: localStorage.getItem('carrito') ? JSON.parse(localStorage.getItem('carrito')) : [],
       productoSeleccionado: null
     }
   },
@@ -60,6 +60,7 @@ const app = Vue.createApp({
       this.cambiarVista('detalle');
     },
     añadirAlCarrito(producto) {
+      localStorage.setItem('carrito', JSON.stringify(this.carrito));
     const itemExistente = this.carrito.find(p => p.id === producto.id);
 
     if (itemExistente) {
