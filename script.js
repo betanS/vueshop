@@ -42,18 +42,22 @@ setInterval(() => {
 const app = Vue.createApp({
   data() {
     return {
-      vista: 'home', // home | productos | carrito | info
+      vista: 'home',
       productos: [] ,
       carrito: [],
-      mostrarProducto: null,
+      productoSeleccionado: null
     }
   },
   methods: {
     cambiarVista(nuevaVista) {
       this.vista = nuevaVista;
-      this.$nextTick(() => {
-        iniciarCarrusel();
-      });
+      if (nuevaVista === 'home') {
+        this.$nextTick(() => { iniciarCarrusel(); });
+      }
+    },
+    toggleShowProducto(id) {
+      this.productoSeleccionado = id;
+      cambiarVista('detalle');
     }
   },
 

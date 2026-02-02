@@ -23,12 +23,11 @@
         <div class="slide"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg" alt=""></div>
 
     <!-- Slides reales -->
-        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-530-530/articles/33/331508/1802-cecotec-conga-thunderbrush-560-aspirador-escoba-y-de-mano-con-cable-600w.jpg" alt=""></a></div>
-        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1095/10955339/1505-aspiradora-sin-cable-dyson-v16-piston-animal-900-w-filtro-hepa-autonomia-70-min-foto.jpg" alt=""></a></div>
-        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1067/10676978/131-karcher-wd-3-v-15-4-20-aspirador-sin-bolsa-seco-humedo-1000w-caracteristicas.jpg" alt=""></a></div>
-        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/23/233461/1460-cecotec-conga-immortal-extremesuction-222v-animal-hand-aspirador-de-mano.jpg" alt=""></a></div>
-        <div class="slide"><a @click="toggleShowProducto(1)" href="index.html#productos"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg" alt=""></a></div>
-
+        <div class="slide"><a v-on:click="toggleShowProducto(1)"><img src="https://thumb.pccomponentes.com/w-530-530/articles/33/331508/1802-cecotec-conga-thunderbrush-560-aspirador-escoba-y-de-mano-con-cable-600w.jpg" alt=""></a></div>
+        <div class="slide"><a v-on:click="toggleShowProducto(2)"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1095/10955339/1505-aspiradora-sin-cable-dyson-v16-piston-animal-900-w-filtro-hepa-autonomia-70-min-foto.jpg" alt=""></a></div>
+        <div class="slide"><a v-on:click="toggleShowProducto(3)"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1067/10676978/131-karcher-wd-3-v-15-4-20-aspirador-sin-bolsa-seco-humedo-1000w-caracteristicas.jpg" alt=""></a></div>
+        <div class="slide"><a v-on:click="toggleShowProducto(4)"><img src="https://thumb.pccomponentes.com/w-150-150/articles/23/233461/1460-cecotec-conga-immortal-extremesuction-222v-animal-hand-aspirador-de-mano.jpg" alt=""></a></div>
+        <div class="slide"><a v-on:click="toggleShowProducto(5)"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg" alt=""></a></div>
     <!-- Clon de la primera -->
         <div class="slide"><img src="https://thumb.pccomponentes.com/w-530-530/articles/33/331508/1802-cecotec-conga-thunderbrush-560-aspirador-escoba-y-de-mano-con-cable-600w.jpg" alt=""></div>
         </div>
@@ -48,7 +47,7 @@
                     <h3>{{ producto.name }}</h3>
                     <p>{{ producto.precio }} €</p>
                     <p>{{ producto.disponibles }}</p>
-                    <button @click="carrito.push(producto)">Comprar</button>
+                    <button @click="carrito.push(producto)" v-bind:disabled="producto.disponibles === 0">Comprar</button>
                 </div>
             </div>
         </li>
@@ -70,6 +69,19 @@
         </div>
     </div>
     </div>
+<!--DIVISIÓN PRODUCTO DETALLADO-->
+    <div v-if="vista === 'detalle' && productoSeleccionado">
+        <div class="detalle-producto" v-for="producto in productos" v-if="producto.id === productoSeleccionado" :key="producto.id">
+            <img :src="producto.imagen" style="width:300px">
+            <h2>{{ producto.name }}</h2>
+            <p><strong>Precio:</strong> {{ producto.precio }} €</p>
+            <p><strong>Disponibles:</strong> {{ producto.disponibles }}</p>
+            <p>{{ producto.descripcion }}</p>
+            <button v-on:click="carrito.push(producto)">Añadir al carrito </button>
+            <button v-on:click="vista = 'productos'">Volver a productos</button>
+        </div>
+    </div>
+
 <!--DIVISIÓN DE INFORMACION-->
 <div v-if="vista === 'info'">
         <div id = "info">
@@ -95,7 +107,6 @@
   </div>
 
 </footer>
-
     <script src="https://unpkg.com/vue@3"></script>
     <script src="script.js"></script>
 </body>
