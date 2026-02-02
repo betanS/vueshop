@@ -9,12 +9,13 @@
 <body>
     <main class="content"><div id="app">
 <!--NavBar-->
-   <top-nav-bar></top-nav-bar>
+   <top-nav-bar @cambiar="cambiarVista"></top-nav-bar>
 
 
 
 
 <!--Carrusel-->
+<div v-if="vista === 'home'">
     <div id="productosCarrusel">
         <div class="carousel" >
         <div class="carousel-track">
@@ -33,11 +34,12 @@
         </div>
         </div>
     </div>
+</div>
     
 
 
 <!--DIVISIÓN DE PRODUCTOS-->
-    <div id = "productos">
+<div v-if="vista === 'productos'" id="productos">
       <ul>
         <li v-for="producto in productos" :key="producto.id">
             <div class="card">
@@ -51,10 +53,11 @@
             </div>
         </li>
       </ul>
-    </div>
+</div>
 
 <!--DIVISIÓN DE PRINCIPAL-->
-    <div id="principal">
+<div id="principal">
+    <div v-if="vista === 'carrito'">
         <div id= "carrito">
             <h2 style="text-align: left; color: gray;">Carrito de compras:</h2>
             <div style="border: 2px solid black; padding: 10px;">
@@ -66,11 +69,14 @@
             </div>
         </div>
     </div>
+    </div>
 <!--DIVISIÓN DE INFORMACION-->
+<div v-if="vista === 'info'">
         <div id = "info">
             <h2 style="text-align: center;">Sobre nosotros:</h2>
             <p style="text-align: center; width: 60%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec varius dolor, in tincidunt risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur scelerisque ipsum nulla, ut sodales nibh pharetra sed. Nullam bibendum at quam in venenatis. Suspendisse ut elementum augue, et vestibulum neque. Suspendisse fringilla euismod enim, sit amet tempus risus fermentum vitae. Morbi tempus pulvinar imperdiet. Proin justo ex, ornare a est convallis, semper fringilla nibh. Praesent tristique tellus sit amet sapien mollis tristique. Nunc vitae magna quis tellus gravida auctor ut ut est. In ipsum neque, laoreet a ipsum a, congue lacinia justo. In nec fringilla nibh. Suspendisse potenti. Vivamus sit amet mi pulvinar, condimentum ligula eget, tempus lectus. Aenean feugiat, elit non pulvinar tempor, erat metus bibendum sapien, nec rutrum lacus mi non eros.
         </div>
+</div>
     
     </div>
 </main>

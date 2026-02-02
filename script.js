@@ -39,6 +39,7 @@ setInterval(() => {
 const app = Vue.createApp({
   data() {
     return {
+      vista: 'home', // home | productos | carrito | info
       productos: [] ,
       carrito: [],
       mostrarProducto: null,
@@ -48,6 +49,12 @@ const app = Vue.createApp({
     toggleShowProducto(id) {
       mostrarProducto = id;
     },
+    cambiarVista(nuevaVista) {
+      this.vista = nuevaVista;
+    }
+  },
+  mounted() {
+    this.vista = 'home'; // Vista inicial
   }
 })
 
@@ -59,14 +66,17 @@ app.component('top-nav-bar', {
          }
   },
   template: `
-    <div class="navBar"><img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg" alt="logo" style="size: 10px;"> 
-        <a href="index.html#productos" id="navProductos">Productos</a>
-        <a href="index.html#info" id="navAcerca">Acerca</a>
-        <div class="nav-right">     
-        <a id="navCarrito">Carrito</a>
-        <button id="login"> </button>
-        <a id="navIdioma">Idioma</a>
-        </div>
+    <div class="navBar">
+      <img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg">
+
+      <a @click="$emit('cambiar', 'home')">Inicio</a>
+      <a @click="$emit('cambiar', 'productos')">Productos</a>
+      <a @click="$emit('cambiar', 'info')">Acerca</a>
+
+      <div class="nav-right">
+        <a @click="$emit('cambiar', 'carrito')">Carrito</a>
+        <button id="login"></button>
+      </div>
     </div>`
 })
 
