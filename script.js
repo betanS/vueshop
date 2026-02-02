@@ -67,7 +67,7 @@ app.component('top-nav-bar', {
   },
   template: `
     <div class="navBar">
-      <img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg">
+      <a @click="$emit('cambiar', 'home')"><img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg"></a>
 
       <a @click="$emit('cambiar', 'home')">Inicio</a>
       <a @click="$emit('cambiar', 'productos')">Productos</a>
