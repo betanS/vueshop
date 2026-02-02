@@ -9,7 +9,8 @@
 <body>
     <main class="content"><div id="app">
 <!--NavBar-->
-    <topnavBar> </topnavBar>
+   <top-nav-bar></top-nav-bar>
+
 
 
 
@@ -38,7 +39,7 @@
 <!--DIVISIÓN DE PRODUCTOS-->
     <div id = "productos">
       <ul>
-           <li v-for="producto in productos" :key="producto.id">
+        <li v-for="producto in productos" :key="producto.id">
             <div class="card">
                 <img :src="producto.imagen" :alt="producto.name">
                 <div class = "container">

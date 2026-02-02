@@ -1,3 +1,4 @@
+/* Carrusel de imágenes */
 const track = document.querySelector('.carousel-track');
 const slides = document.querySelectorAll('.slide');
 
@@ -34,7 +35,7 @@ setInterval(() => {
   }
 }, DELAY);
 //###############################################################################
-
+/* Aplicación Vue.js */
 const app = Vue.createApp({
   data() {
     return {
@@ -49,7 +50,9 @@ const app = Vue.createApp({
     },
   }
 })
-app.component('topnavBar', {
+
+/* Componente de la barra de navegación */
+app.component('top-nav-bar', {
   data() {
     return {
       title: 'Tienda de Aspiradoras',
@@ -66,6 +69,8 @@ app.component('topnavBar', {
         </div>
     </div>`
 })
+
+/* Montar la aplicación // Cargar Productos */
 const appInstance = app.mount('#app');
 document.addEventListener("DOMContentLoaded", function() {
     var ourRequest = new XMLHttpRequest();
@@ -92,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     ourRequest.send();
 });
+
+/* Gestión del botón de login */
 const loginButton = document.getElementById("login");
 if (sessionStorage.getItem('loggedUser')) {
    loginButton.textContent = "👤";
