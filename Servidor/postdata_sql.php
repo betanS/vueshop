@@ -25,40 +25,29 @@ if (!$data) {
     exit;
 }
 
-// UPDATE ID = 0
-$stmt = $conn->prepare("
-    UPDATE usuarios SET
-        nombre       = ?,
-        apellido     = ?,
-        dni          = ?,
-        fecha        = ?,
-        codigo       = ?,
-        correo       = ?,
-        telefonofijo = ?,
-        telefono     = ?,
-        tarjeta      = ?,
-        iban         = ?,
-        contrasena   = ?
-    WHERE id = 0
-");
-
-$stmt->bind_param(
-    "sssssssssss",
-    $data["nombre"],
-    $data["apellido"],
-    $data["dni"],
-    $data["fecha"],
-    $data["codigo"],
-    $data["correo"],
-    $data["telefonofijo"],
-    $data["telefono"],
-    $data["tarjeta"],
-    $data["iban"],
-    $data["contrasena"]
-);
+// CHECK IF USER EXISTS IF NOT CREATE ONE
+$stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+$stmt->bind_param("s", $data["email"]);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
+    echo json_encode(["status" => "error", "msg" => "Email already registered"]);
+    exit;
+   } else {
+    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, cuentaBancaria, email, telefono, contrasena) VALUES (?, ?, ?, ?, ?)");
+    
+    $stmt->bind_param(
+        "sssss",
+        $data["nombre"],
+        $data["cuentaBancaria"],
+        $data["email"],
+        $data["telefono"],
+        $data["contrasena"]
+        );
+   }
 
 if ($stmt->execute()) {
-    echo json_encode(["status" => "success", "msg" => "ID 0 updated"]);
+    echo json_encode(["status" => "success", "msg" => "Usuario registrado"]);
 } else {
     echo json_encode(["status" => "error", "msg" => $stmt->error]);
 }

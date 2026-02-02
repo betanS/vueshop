@@ -7,20 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="navBar"><img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg" alt="logo" style="size: 10px;"> 
-        <a href="index.html#productos" id="navProductos">Productos</a>
-        <a href="index.html#info" id="navAcerca">Acerca</a>
-        <div class="nav-right">     
-        <a id="navCarrito">Carrito</a>
-        <button id="login"> </button>
-        <a id="navIdioma">Idioma</a>
-        </div>
-    </div>
+    <main class="content"><div id="app">
+<!--NavBar-->
+    <topnavBar> </topnavBar>
+
+
+
+<!--Carrusel-->
     <div id="productosCarrusel">
-    <div class="carousel" >
-    <div class="carousel-track">
-    <!-- Clon de la última -->
+        <div class="carousel" >
+        <div class="carousel-track">
+        <!-- Clon de la última -->
         <div class="slide"><img src="https://thumb.pccomponentes.com/w-150-150/articles/1080/10804795/1943-dyson-v12-detect-slim-absolute-aspiradora-escoba-mano-sin-cable-545-w-foto.jpg" alt=""></div>
 
     <!-- Slides reales -->
@@ -35,8 +32,10 @@
         </div>
         </div>
     </div>
-    <main class="content"><div id="app">
     
+
+
+<!--DIVISIÓN DE PRODUCTOS-->
     <div id = "productos">
       <ul>
            <li v-for="producto in productos" :key="producto.id">
@@ -51,25 +50,45 @@
             </div>
         </li>
       </ul>
-      </div>
+    </div>
+
+<!--DIVISIÓN DE PRINCIPAL-->
     <div id="principal">
         <div id= "carrito">
             <h2 style="text-align: left; color: gray;">Carrito de compras:</h2>
             <div style="border: 2px solid black; padding: 10px;">
-            <div v-for="(item, index) in carrito" :key="index" style="margin-bottom: 10px;">
+                <div v-for="(item, index) in carrito" :key="index" style="margin-bottom: 10px;">
                 <p>{{ item.name }} - {{ item.precio }}</p>  
+                </div>
+                <div v-if="carrito.length === 0" style="text-align: center; color: gray;">Tu carrito está vacío.</div>
+                <div v-if="carrito.length > 0" style="text-align: center; color: gray;">Total: {{ carrito.reduce((total, item) => total + item.precio, 0) }} € <button @click="carrito = []">Vaciar carrito</button></div>
             </div>
-            <div v-if="carrito.length === 0" style="text-align: center; color: gray;">Tu carrito está vacío.</div>
-            <div v-if="carrito.length > 0" style="text-align: center; color: gray;">Total: {{ carrito.reduce((total, item) => total + item.precio, 0) }} € <button @click="carrito = []">Vaciar carrito</button></div>
-
         </div>
+    </div>
+<!--DIVISIÓN DE INFORMACION-->
         <div id = "info">
             <h2 style="text-align: center;">Sobre nosotros:</h2>
             <p style="text-align: center; width: 60%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec varius dolor, in tincidunt risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur scelerisque ipsum nulla, ut sodales nibh pharetra sed. Nullam bibendum at quam in venenatis. Suspendisse ut elementum augue, et vestibulum neque. Suspendisse fringilla euismod enim, sit amet tempus risus fermentum vitae. Morbi tempus pulvinar imperdiet. Proin justo ex, ornare a est convallis, semper fringilla nibh. Praesent tristique tellus sit amet sapien mollis tristique. Nunc vitae magna quis tellus gravida auctor ut ut est. In ipsum neque, laoreet a ipsum a, congue lacinia justo. In nec fringilla nibh. Suspendisse potenti. Vivamus sit amet mi pulvinar, condimentum ligula eget, tempus lectus. Aenean feugiat, elit non pulvinar tempor, erat metus bibendum sapien, nec rutrum lacus mi non eros.
         </div>
+    
     </div>
-    </div></main>
-    <footer>© 2026 TiendaAspiradoras.</footer>
+</main>
+
+
+<!--FOOTER-->
+<footer style="background-color:#222; color:#fff; padding:20px 10px; text-align:center; font-size:14px;">
+  <div style="max-width:800px; margin:0 auto; line-height:1.6;">
+    <p>© 2026 <strong>Tienda De Aspiradoras</strong>. Todos los derechos reservados.</p>
+    <p><strong>Dirección:</strong> Calle Ejemplo 123, 28000, Ciudad, País</p>
+    <p><strong>Correo electrónico:</strong> <a href="mailto:contacto@empresa.com" style="color:#fff; text-decoration:underline;">contacto@empresa.com</a></p>
+    <p><strong>Teléfono:</strong> <a href="tel:+34600000000" style="color:#fff; text-decoration:underline;">+34 600 000 000</a></p>
+    <p style="margin-top:10px; font-size:12px;">
+      El contenido de este sitio web, incluyendo textos, imágenes, logotipos, gráficos y otros materiales, está protegido por la legislación vigente en materia de propiedad intelectual e industrial. Queda prohibida su reproducción, distribución, comunicación pública o modificación sin la autorización expresa del titular de los derechos.
+    </p>
+  </div>
+
+</footer>
+
     <script src="https://unpkg.com/vue@3"></script>
     <script src="script.js"></script>
 </body>

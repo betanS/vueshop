@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Register</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
     <h1 class="logo">Register</span></h1>
 
-    <form id="registerForm">
-      <input type="text" id="username" placeholder="Username" required />
+    <form id="registerForm" method="POST">
+      <input type="text" id="name" placeholder="Nombre" required />
+      <input type="text" id="email" placeholder="Email" required />
+      <input type="text" id="phone" placeholder="Teléfono" required />
+      <input type="text" id="cuentaBancaria" placeholder="Cuenta Bancaria" required />
       <input type="password" id="password" placeholder="Password" required />
       <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
       <button type="submit">Register</button>
@@ -19,36 +23,51 @@
   </div>
 
   <script>
-    const form = document.getElementById('registerForm');
+const form = document.getElementById('registerForm');
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-    
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-      }
+  const payload = {
+    nombre: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    telefono: document.getElementById('phone').value.trim(),
+    cuentaBancaria: document.getElementById('cuentaBancaria').value.trim(),
+    contrasena: document.getElementById('password').value
+  };
 
-      if (localStorage.getItem(username)) {
-        alert("Username already exists!");
-        return;
-      }
+  if (payload.contrasena !== document.getElementById('confirmPassword').value) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
 
-      // Guardamos usuario: clave = username, valor = [username, password]
-      sessionStorage.setItem(username, JSON.stringify([username, password]));
-
-      alert("Account created successfully!");
-      window.location.href = "login.html";
+  try {
+    const response = await fetch("http://localhost:8084/postdata_sql.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: "data=" + encodeURIComponent(JSON.stringify(payload))
     });
-  </script>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.add("loaded");
-  });
+
+    const text = await response.text();
+    console.log("RAW RESPONSE:", text);
+
+    const result = JSON.parse(text);
+
+    if (result.status === "success") {
+      alert("Usuario registrado correctamente");
+      window.location.href = "login.html";
+    } else {
+      alert(result.msg || "Error al registrar");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Error de conexión o respuesta inválida");
+  }
+});
 </script>
+
 </body>
 </html>

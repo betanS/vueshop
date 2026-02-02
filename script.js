@@ -49,7 +49,23 @@ const app = Vue.createApp({
     },
   }
 })
-
+app.component('topnavBar', {
+  data() {
+    return {
+      title: 'Tienda de Aspiradoras',
+         }
+  },
+  template: `
+    <div class="navBar"><img id="logo" src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Handshake-business-logo-by-DEEMKA-STUDIO-3.jpg" alt="logo" style="size: 10px;"> 
+        <a href="index.html#productos" id="navProductos">Productos</a>
+        <a href="index.html#info" id="navAcerca">Acerca</a>
+        <div class="nav-right">     
+        <a id="navCarrito">Carrito</a>
+        <button id="login"> </button>
+        <a id="navIdioma">Idioma</a>
+        </div>
+    </div>`
+})
 const appInstance = app.mount('#app');
 document.addEventListener("DOMContentLoaded", function() {
     var ourRequest = new XMLHttpRequest();
