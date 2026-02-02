@@ -57,10 +57,21 @@ const app = Vue.createApp({
     },
     toggleShowProducto(id) {
       this.productoSeleccionado = id;
-      cambiarVista('detalle');
-    }
-  },
+      this.cambiarVista('detalle');
+    },
+    añadirAlCarrito(producto) {
+    const itemExistente = this.carrito.find(p => p.id === producto.id);
 
+    if (itemExistente) {
+      itemExistente.cantidad += 1;
+    } else {
+      this.carrito.push({
+        ...producto,
+        cantidad: 1
+      });
+    }
+  }
+  },
   mounted() {
     this.vista = 'home'; // Vista inicial
   }

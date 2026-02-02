@@ -47,7 +47,7 @@
                     <h3>{{ producto.name }}</h3>
                     <p>{{ producto.precio }} €</p>
                     <p>{{ producto.disponibles }}</p>
-                    <button @click="carrito.push(producto)" v-bind:disabled="producto.disponibles === 0">Comprar</button>
+                    <button @click="añadirAlCarrito(producto)" v-bind:disabled="producto.disponibles === 0">Comprar</button>
                 </div>
             </div>
         </li>
@@ -59,15 +59,17 @@
     <div v-if="vista === 'carrito'">
         <div id= "carrito">
             <h2 style="text-align: left; color: gray;">Carrito de compras:</h2>
-            <div style="border: 2px solid black; padding: 10px;">
-                <div v-for="(item, index) in carrito" :key="index" style="margin-bottom: 10px;">
-                <p>{{ item.name }} - {{ item.precio }}</p>  
-                </div>
-                <div v-if="carrito.length === 0" style="text-align: center; color: gray;">Tu carrito está vacío.</div>
-                <div v-if="carrito.length > 0" style="text-align: center; color: gray;">Total: {{ carrito.reduce((total, item) => total + item.precio, 0) }} € <button @click="carrito = []">Vaciar carrito</button></div>
+            <div v-for="(item, index) in carrito" :key="item.id" style="margin-bottom: 10px;">
+                <p>{{ item.name }} - {{ item.precio }} €</p>
+                <input type="number" min="1" v-model.number="item.cantidad">
             </div>
-        </div>
-    </div>
+            <div v-if="carrito.length > 0" style="text-align: center; color: gray;">
+                Total: {{ carrito.reduce((total, item) => total + item.precio * item.cantidad, 0).toFixed(2) }} € 
+                <button @click="carrito = []">Vaciar carrito</button>
+            </div>
+            <div v-if="carrito.length === 0" style="text-align: center; color: gray; border: 1px solid gray; padding: 20px; margin-top: 20px;">
+                <p>El carrito está vacío.</p>
+            </div>
     </div>
 <!--DIVISIÓN PRODUCTO DETALLADO-->
     <div v-if="vista === 'detalle' && productoSeleccionado">
@@ -77,7 +79,7 @@
             <p><strong>Precio:</strong> {{ producto.precio }} €</p>
             <p><strong>Disponibles:</strong> {{ producto.disponibles }}</p>
             <p>{{ producto.descripcion }}</p>
-            <button v-on:click="carrito.push(producto)">Añadir al carrito </button>
+            <button @click="añadirAlCarrito(producto)">Añadir al carrito </button>
             <button v-on:click="vista = 'productos'">Volver a productos</button>
         </div>
     </div>
