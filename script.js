@@ -1,5 +1,7 @@
 /* Carrusel de imágenes */
-const track = document.querySelector('.carousel-track');
+function iniciarCarrusel() {
+  const track = document.querySelector('.carousel-track');
+  if (!track) return;
 const slides = document.querySelectorAll('.slide');
 
 let index = 1; // empezamos en la primera real
@@ -34,6 +36,7 @@ setInterval(() => {
     }, 500);
   }
 }, DELAY);
+}
 //###############################################################################
 /* Aplicación Vue.js */
 const app = Vue.createApp({
@@ -48,8 +51,12 @@ const app = Vue.createApp({
   methods: {
     cambiarVista(nuevaVista) {
       this.vista = nuevaVista;
+      this.$nextTick(() => {
+        iniciarCarrusel();
+      });
     }
   },
+
   mounted() {
     this.vista = 'home'; // Vista inicial
   }
