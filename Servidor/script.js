@@ -44,6 +44,7 @@ const app = Vue.createApp({
     return {
       vista: 'home',
       productos: [] ,
+      elproducto: [],
       carrito: localStorage.getItem('carrito') ? JSON.parse(localStorage.getItem('carrito')) : [],
       productoSeleccionado: null
     }
@@ -56,22 +57,33 @@ const app = Vue.createApp({
       }
     },
     toggleShowProducto(id) {
-      this.productoSeleccionado = id;
+      console.log(id);
+      this.elproducto = this.productos.find(p => p.id === id);
+      console.log(this.elproducto);
       this.cambiarVista('detalle');
     },
+    vaciarCarrito(){
+      this.carrito = [];
+      localStorage.setItem('carrito', []);
+    },
+    confirmarCompra(){
+      alert('Compra confirmada!');
+      this.carrito = [];
+      localStorage.setItem('carrito', []);
+    },
     añadirAlCarrito(producto) {
+      console.log(producto);
+      const itemExistente = this.carrito.find(p => p.name === producto.name);
+      if (itemExistente) {
+        itemExistente.cantidad += 1;
+      } else {
+        this.carrito.push({
+          ...producto,
+          cantidad: 1
+        });
+      }
       localStorage.setItem('carrito', JSON.stringify(this.carrito));
-    const itemExistente = this.carrito.find(p => p.id === producto.id);
-
-    if (itemExistente) {
-      itemExistente.cantidad += 1;
-    } else {
-      this.carrito.push({
-        ...producto,
-        cantidad: 1
-      });
     }
-  }
   },
   mounted() {
     this.vista = 'home'; // Vista inicial

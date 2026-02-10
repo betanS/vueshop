@@ -12,13 +12,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT name, imagen, precio, disponibles, descripcion FROM Productos";
+$sql = "SELECT id, name, imagen, precio, disponibles, descripcion FROM Productos";
 $result = $conn->query($sql);
 
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $myObj = new stdClass;
+        $myObj->id          = $row["id"];
         $myObj->name        = $row["name"];
         $myObj->imagen      = $row["imagen"];
         $myObj->precio      = $row["precio"];
