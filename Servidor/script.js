@@ -113,7 +113,7 @@ app.component('top-nav-bar', {
 const appInstance = app.mount('#app');
 document.addEventListener("DOMContentLoaded", function() {
     var ourRequest = new XMLHttpRequest();
-    ourRequest.open("GET", "http://localhost:8084/data_sql.php", true);
+    ourRequest.open("GET", "http://192.168.216.175:8084/data_sql.php", true);
 
     ourRequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
